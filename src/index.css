@@ -25,40 +25,60 @@ h1{
 
 nav{
   display: flex;
-  width: 80vw;
-  justify-content: flex-start;
+  width: 100vw;
+  justify-content: space-around;
+  align-items: center;
   padding: 1rem;
+  background-color: rgb(227, 227, 227);
 }
 
-a{
+nav.dark{
+  background-color: #000;
+}
+
+footer.dark{
+  background-color: #000;
+}
+
+.link {
   color: #000;
   text-decoration: none;
   margin: 5px;
   cursor: pointer;
 }
-a:hover{
+.link:hover{
   color: rgb(136, 136, 136);
 } 
 
 footer {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   text-align: center;
-  padding: 2rem;
   position: relative;
   bottom: 0;
-  width: 90%;
-  height: 40px;
-  margin-top: 2rem;
+  width: 100vw;
+  height: 10vh;
 }
 
-footer > img{
-  width: 200px;
+footer div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 20vw;
+}
+
+footer div img {
+  filter: invert(100%);
+  width: 40px;
   margin: 0;
 }
-footer > p{
-  margin: 0;
-  padding-top: 0.7rem;
+
+footer.dark img {
+  filter: invert(100%);
+}
+
+footer.dark div img {
+  filter: brightness(1.0);
 }
 
 form{
@@ -70,17 +90,28 @@ form{
   margin: 0 auto;
 }
 
-.card{
+.card {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
   width: 200px;
-  padding: 0.5rem 0.5rem 0 0.5rem;
+  /* height: 400px; */
+  padding: 5px;
   border: 0.5px solid rgb(136, 136, 136);
+  
+}
+
+.card img {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  width: 190px;
+  height: 200px;
+  /* margin: 5px; */
 }
 
 .card:hover{
+  cursor: pointer;
   border: 0.5px solid rgb(206, 217, 142);
 }
 
@@ -92,6 +123,7 @@ form{
   height: auto;
   flex-wrap: wrap;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 table {
@@ -117,6 +149,6 @@ tr:nth-child(even) {
   background-color: #12121296;
   color: white;
 }
-.dark > a {
+.dark .link {
   color: white;
 }

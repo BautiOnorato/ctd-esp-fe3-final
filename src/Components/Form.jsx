@@ -1,15 +1,42 @@
-import React from "react";
+import React, { useState } from 'react';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
+const SignupSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(6)
+    .max(50)
+    .required(),
+  email: Yup.string().email().required(),
+});
 
-const Form = () => {
-  //Aqui deberan implementar el form completo con sus validaciones
+const FormComponent = () => {
 
-  return (
+  const [mensaje, setMensaje] = useState("");
+
+  return(
     <div>
-      <form>
-      </form>
-    </div>
-  );
+    <h1>Signup</h1>
+    <Formik
+      initialValues={{
+        name: '',
+        email: '',
+      }}
+      validationSchema={SignupSchema}
+      onSubmit={(values, e) => {
+        setMensaje(`Gracias ${values.name}, te contactaremos cuanto antes vía mail`);
+        e.resetForm();
+      }}
+    >
+      <Form>
+        <Field name="name" placeholder="Nombre completo"/>
+        <Field name="email" placeholder="Email"/>
+        <button type="submit" onClick={() => setMensaje("Por favor verifique su información nuevamente")}>Submit</button>
+      </Form>  
+    </Formik>
+    <p>{mensaje}</p>
+  </div>
+  )
 };
 
-export default Form;
+export default FormComponent;

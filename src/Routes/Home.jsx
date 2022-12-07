@@ -11,8 +11,8 @@ const Home = () => {
   const { state } = useContext(ContextGlobal);
 
   return (
-    <main className={state.theme} >
-      <h1>Home</h1>
+    <main className={state.theme} style={{padding: "20px"}}>
+      <h1 style={{textAlign: "center"}}>Home</h1>
       <div className='card-grid'>
         {/* Aqui deberias renderizar las cards */}
         {state.data.map(doctor => (

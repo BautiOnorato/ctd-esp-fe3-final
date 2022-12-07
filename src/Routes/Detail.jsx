@@ -34,7 +34,7 @@ const Detail = () => {
   }, [])
 
   return (
-    <TableContainer component={Paper} >
+    <TableContainer>
       <Table aria-label="simple table" className={state.theme}>
         <TableHead>
           <TableRow>

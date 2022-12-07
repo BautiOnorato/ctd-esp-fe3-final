@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { Box, Button, TextField } from '@mui/material';
+import { ContextGlobal } from './utils/global.context';
+
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -12,11 +15,12 @@ const SignupSchema = Yup.object().shape({
 
 const FormComponent = () => {
 
+  const { state } = useContext(ContextGlobal);
+
   const [mensaje, setMensaje] = useState("");
 
   return(
-    <div>
-    <h1>Signup</h1>
+  <Box sx={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"}}>
     <Formik
       initialValues={{
         name: '',
@@ -28,14 +32,22 @@ const FormComponent = () => {
         e.resetForm();
       }}
     >
-      <Form>
-        <Field name="name" placeholder="Nombre completo"/>
-        <Field name="email" placeholder="Email"/>
-        <button type="submit" onClick={() => setMensaje("Por favor verifique su información nuevamente")}>Submit</button>
+      <Form style={{display: "flex", flexDirection: "column", width: "25%", justifyContent: "space-around", height: "200px"}}>
+        <Field name="name" placeholder="Nombre completo" style={{padding: "10px", borderRadius: "8px"}}/>
+        <Field name="email" placeholder="Email" style={{padding: "10px", borderRadius: "8px"}}/>
+        <Button 
+        type="submit" 
+        onClick={() => setMensaje("Por favor verifique su información nuevamente")}
+        sx={state.theme === "dark" ?
+        {bgcolor: "white", color: "black", "&:hover": {backgroundColor: "black", color: "white", border: "2px solid white"}} :
+        {bgcolor: "black", color: "white", "&:hover": {backgroundColor: "white", color: "black", border: "2px solid black"}}}
+        >
+          Send
+        </Button>
       </Form>  
     </Formik>
-    <p>{mensaje}</p>
-  </div>
+    <p style={{textAlign: "center"}}>{mensaje}</p>
+  </Box>
   )
 };
 

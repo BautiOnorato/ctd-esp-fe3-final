@@ -1,22 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Components/Layout";
-// import Footer from "./Components/Footer";
-// import Navbar from "./Components/Navbar";
-import Contact from "./Routes/Contact";
-import Detail from "./Routes/Detail";
-import Favs from "./Routes/Favs";
-import Home from "./Routes/Home";
-
+import { routes } from './navigation/Routes'; 
 
 function App() {
   return (
     <BrowserRouter>
         <Routes>
           <Route element={<Layout/>}>
-            <Route path="/home" element={<Home/>} />
-            <Route path="/contact" element={<Contact/>} />
-            <Route path="/dentist/:id" element={<Detail/>} />
-            <Route path="/favs" element={<Favs/>} />
+            {routes.map(({ id, path, Element }) => (<Route key={id} path={path} element={<Element/>} />))}
           </Route>
         </Routes>
     </BrowserRouter>

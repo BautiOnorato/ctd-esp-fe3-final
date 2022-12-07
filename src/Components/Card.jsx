@@ -8,21 +8,6 @@ const Card = ({ name, username, id }) => {
   const navigate = useNavigate();
   const [favorito, setFavorito] = useState(false);
   const [update, setUpdate] = useState(false);
-  // const [data, setData] = useState({ 
-  //   name: name, 
-  //   username: username, 
-  //   id: id, 
-  //   favorito: !localStorage.getItem("user-" + id) ? true : false 
-  // });
-
-  // const addFav = () => {
-  //   setData({...data, favorito: !data.favorito});
-  //   if (!data.favorito) {
-  //     localStorage.removeItem("user-" + data.id)
-  //   } else {
-  //     localStorage.setItem("user-" + data.id, JSON.stringify(data));   
-  //   } 
-  // }
 
   const addFav = () => {
     const favoritos = localStorage.getItem("favoritos");
@@ -59,7 +44,7 @@ const Card = ({ name, username, id }) => {
         {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
 
         {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-      <button onClick={addFav} className={favorito ? "favButton added" : "favButton"}>{favorito ? "added" : "add new"}</button>
+      <button onClick={addFav} className={favorito ? "favButton added" : "favButton"}>{favorito ? "Fav" : "Add fav"}</button>
       {/* <button onClick={addFav} className="favButton">add fav</button> */}
     </div>
   )

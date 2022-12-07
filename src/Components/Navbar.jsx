@@ -1,27 +1,48 @@
-import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
-import "bootstrap/dist/css/bootstrap.min.css"
-import { useContext } from 'react'
-import { ContextGlobal } from './utils/global.context'
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
+import { AppBar, Box, Button } from '@mui/material';
+import { createTheme } from '@mui/material';
+import { routes } from '../navigation/Routes';
+import { ContextGlobal } from './utils/global.context';
+import { useContext } from 'react';
+
 
 const Navbar = () => {
 
   const { state, dispatch } = useContext(ContextGlobal);
-  const valorBtn = state.theme === "dark" ? "☀" : "🌙";
-  const claseBtn = state.theme === "dark" ? "light" : "dark";
 
   return (
-    <nav className={state.theme}>
-        <h1><span className='text-danger'>D</span>H Odonto</h1>
-        <div className='d-flex justify-content-around w-25'>
-          <Link className='link' to="/home">Home</Link>
-          <Link className='link' to="/contact">Contact</Link>
-          <Link className='link' to="/favs">Favs</Link>
-          <button className={`btn btn-${claseBtn}`} onClick={() => dispatch({type: state.theme})}>{valorBtn}</button>
-        </div>
-    </nav>
-  )
+    <Box sx={{width: "100%"}}>
+      <AppBar position='static' sx={{width: "100%"}}>
+        <Toolbar sx={{display: "flex", color: "white"}}>
+          <Typography
+            variant="h4"
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            <span style={{color: "red"}}>D</span>H Odonto
+          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-around", width: "30%"}}>
+            {routes.map(({ id, path, title }) => title !== "Detail" ?
+             <Link key={id} to={path}
+             style={{textDecoration: "none", fontSize: "1.2rem", color: "white"}}
+             >
+              {title}
+              </Link> 
+             : "")}
+            <Button variant="contained" 
+            onClick={() => dispatch({type: state.theme})}
+            sx={state.theme === "light" ? 
+            {backgroundColor: "black", "&:hover": {backgroundColor: "white", color: "black"}} : 
+            {backgroundColor: "white", color: "black", "&:hover": {backgroundColor: "black", color: "white"}}}
+            >
+              {state.theme === "light" ? "🌙" : "☀"}
+            </Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
 }
-
-export default Navbar
+export default Navbar;

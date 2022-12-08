@@ -54,6 +54,42 @@ describe("Render rutas", () => {
 
 })
 
+describe("Navegacion NavBar desde home", () => {
+
+    beforeEach(() => {
+        render(
+            <ContextProvider>
+                <App/>
+            </ContextProvider>
+        );
+    })
+
+    it("Ir a favs", () => {
+
+        const linkFavs = screen.getByRole('link', {
+            name: /favs/i
+        })
+
+        fireEvent.click(linkFavs);
+
+        expect(window.location.href).toBe('http://localhost/favs');
+
+    })
+
+    it("Ir a contact", () => {
+
+        const linkContact = screen.getByRole('link', {
+            name: /contact/i
+        })
+
+        fireEvent.click(linkContact);
+
+        expect(window.location.href).toBe("http://localhost/contact")
+
+    })
+
+})
+
 test('Btn DarkMode', () => {
 
     render(

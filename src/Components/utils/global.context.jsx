@@ -1,8 +1,6 @@
-import { createContext, useReducer, useEffect, useMemo } from "react";
-import axios from 'axios'
+import { createContext, useReducer } from "react";
 
-
-export const initialState = {theme: "light", data: []}
+export const initialState = {theme: "light", data: [], favs: []}
 
 export const ContextGlobal = createContext();
 
@@ -14,6 +12,8 @@ const reducerFunction = (state, action) => {
       return {...state, theme: "light"};
     case "API_HOME":
       return action.payload;
+    case "FAVS":
+      return action.payload;
     default:
       return state;
   }
@@ -22,19 +22,6 @@ const reducerFunction = (state, action) => {
 export const ContextProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducerFunction, initialState)
-
-  useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/users")
-    .then(res => {
-      dispatch({
-        type: "API_HOME",
-        payload: {
-          ...state,
-          data: res.data,
-        }
-      })
-    })
-  }, [])
 
   const store = {
     state, 

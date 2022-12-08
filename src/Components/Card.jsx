@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ContextGlobal } from "./utils/global.context";
 
 const Card = ({ name, username, id }) => {
 
-
   const navigate = useNavigate();
+  const { state, dispatch } = useContext(ContextGlobal);
   const [favorito, setFavorito] = useState(false);
   const [update, setUpdate] = useState(false);
 
@@ -17,8 +18,22 @@ const Card = ({ name, username, id }) => {
       const existe = listaFiltrada.length !== listaParseada.length;
       existe ? listaParseada = listaFiltrada : listaParseada.push({name: name, username: username, id: id});
       localStorage.setItem("favoritos", JSON.stringify(listaParseada));
+      dispatch({
+        type: "FAVS",
+        payload: {
+          ...state,
+          favs: listaParseada
+        }
+      })
     } else {
       localStorage.setItem("favoritos", JSON.stringify([{name: name, username: username, id: id}]))
+      dispatch({
+        type: "FAVS",
+        payload: {
+          ...state,
+          favs: [{name: name, username: username, id: id}]
+        }
+      })
     }
     setFavorito(!favorito)
     setUpdate(!update)
@@ -38,6 +53,7 @@ const Card = ({ name, username, id }) => {
   return (
     <div className="card">
       <img src="./images/doctor.jpg" alt="doctor" onClick={() => navigate(`/dentist/${id}`)}/>
+      {/* <Link to={`/dentist/${id}`}><img src="./images/doctor.jpg" alt="doctor"/></Link> */}
         {/* En cada card deberan mostrar en name - username y el id */}
       <h4>{name}</h4>
       <p>{username}</p>

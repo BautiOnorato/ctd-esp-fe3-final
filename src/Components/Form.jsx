@@ -29,7 +29,6 @@ const FormComponent = () => {
       validationSchema={SignupSchema}
       onSubmit={(values, e) => {
         setMensaje(`Gracias ${values.name}, te contactaremos cuanto antes vía mail`);
-        e.resetForm();
       }}
     >
       <Form style={{display: "flex", flexDirection: "column", width: "25%", justifyContent: "space-around", height: "200px"}}>

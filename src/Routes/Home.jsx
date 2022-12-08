@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import Card from '../Components/Card'
 import { ContextGlobal } from '../Components/utils/global.context'
@@ -8,7 +9,20 @@ import { ContextGlobal } from '../Components/utils/global.context'
 
 const Home = () => {
 
-  const { state } = useContext(ContextGlobal);
+  const { state, dispatch } = useContext(ContextGlobal);
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/users")
+    .then(res => {
+      dispatch({
+        type: "API_HOME",
+        payload: {
+          ...state,
+          data: res.data,
+        }
+      })
+    })
+  }, [])
 
   return (
     <main className={state.theme} style={{padding: "20px"}}>

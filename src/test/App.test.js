@@ -47,8 +47,8 @@ describe("Render rutas", () => {
                 <Detail/>
             </ContextProvider>
         );
-        const name = screen.getByText("Name");
-        expect(name).toBeInTheDocument();
+        const title = screen.getByText("Detail Dentist");
+        expect(title).toBeInTheDocument();
     })
 
 
@@ -76,6 +76,22 @@ test('Btn DarkMode', () => {
 
     expect(btnLightMode).toBeInTheDocument();
 
+})
+
+test('btn volver arriba', () => {
+    render(
+        <ContextProvider>
+            <App/>
+        </ContextProvider>
+    );
+
+    const btnVolverArriba = screen.getByRole('button', {
+        name: /Volver Arriba/i
+    })
+    
+    fireEvent.click(btnVolverArriba);
+
+    expect(window.scrollY).toBe(0);
 })
 
 describe('Signup', () => {

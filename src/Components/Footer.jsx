@@ -1,7 +1,6 @@
-import { Button, IconButton, Tooltip, Typography } from '@mui/material';
+import { Button, IconButton, Tooltip } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import { socialNetwork } from '../navigation/Routes';
 import { ContextGlobal } from './utils/global.context'
 
@@ -10,19 +9,14 @@ const Footer = () => {
 
   const { state } = useContext(ContextGlobal);
 
-
   return (
     <Box>
-      <Box 
-      sx={{width: "100%", bgcolor: "red", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}} 
-      onClick={() => {window.scrollTo({top: 0})}}
+      <Button 
+      sx={{color: "white", padding: "10px 0",width: "100%", bgcolor: "red", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", "&:hover": {bgcolor: "#f02323"}}}
+      onClick={() => {window.scrollTo({top: 0, behavior: "smooth"})}}
       >
-        <Button 
-        sx={{color: "white", padding: "10px 0"}}
-        >
-          Volver Arriba
-        </Button>
-      </Box>
+        Volver Arriba
+      </Button>
       <Box 
       sx={state.theme === "light" ? 
       {display: "flex", alignItems: "center", justifyContent: "space-around"} : 
@@ -48,21 +42,6 @@ const Footer = () => {
     </Box>
   )
 
-  // return (
-  //   <footer className={state.theme}>
-  //       <Link className='volver-arriba' onClick={() => {window.scrollTo({top: 0})}}>Volver arriba</Link>
-  //       <div>
-  //         <img src="./images/DH.png" alt="logo dh" />
-  //         <div>
-  //           <Link to="https://www.facebook.com/"><img src='./images/ico-facebook.png' alt='Logo facebook'/></Link>
-  //           <Link to="https://www.instagram.com/"><img src='./images/ico-instagram.png' alt='Logo instagram'/></Link>
-  //           <Link to="https://www.tiktok.com/es/"><img src='./images/ico-tiktok.png' alt='Logo tiktok'/></Link>
-  //           <Link to="https://web.whatsapp.com/"><img src='./images/ico-whatsapp.png' alt='Logo whatsapp'/></Link>
-  //         </div>
-  //       </div>
-
-  //   </footer>
-  // )
 }
 
 export default Footer

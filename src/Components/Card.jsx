@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContextGlobal } from "./utils/global.context";
 
@@ -53,15 +52,9 @@ const Card = ({ name, username, id }) => {
   return (
     <div className="card">
       <img src="./images/doctor.jpg" alt="doctor" onClick={() => navigate(`/dentist/${id}`)}/>
-      {/* <Link to={`/dentist/${id}`}><img src="./images/doctor.jpg" alt="doctor"/></Link> */}
-        {/* En cada card deberan mostrar en name - username y el id */}
       <h4>{name}</h4>
       <p>{username}</p>
-        {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
-
-        {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
       <button onClick={addFav} className={favorito ? "favButton added" : "favButton"}>{favorito ? "Fav" : "Add fav"}</button>
-      {/* <button onClick={addFav} className="favButton">add fav</button> */}
     </div>
   )
   

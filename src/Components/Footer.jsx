@@ -19,8 +19,8 @@ const Footer = () => {
       </Button>
       <Box 
       sx={state.theme === "light" ? 
-      {display: "flex", alignItems: "center", justifyContent: "space-around"} : 
-      {display: "flex", alignItems: "center", justifyContent: "space-around", backgroundColor: "black"}}
+      {display: "flex", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"} : 
+      {display: "flex", alignItems: "center", justifyContent: "space-around", backgroundColor: "black", flexWrap: "wrap"}}
       >
         <a href="https://www.digitalhouse.com/ar" target="e_blank" rel="nonreferrer">
           <img src="./images/DH.png" alt="logo dh"

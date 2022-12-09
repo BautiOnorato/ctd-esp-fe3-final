@@ -27,6 +27,7 @@ body {
 }
 
 .contact {
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -45,16 +46,16 @@ body {
   border: 0.5px solid rgb(136, 136, 136); 
 }
 
-.dark .card-grid .card {
+.dark .card {
   background-color: rgb(87, 84, 84);
 }
 
-.dark .card-grid .card .favButton{
+.dark .card .favButton{
   color: #fff;
   background-color: rgb(29, 29, 29);
 }
 
-.dark .card-grid .card .favButton.added {
+.dark .card .favButton.added {
   color: #fff;
   background-color: rgb(4, 128, 0);
 }
@@ -68,18 +69,6 @@ body {
 
 .card:hover{
   border: 0.5px solid rgb(206, 217, 142);
-}
-
-.card-grid{
-  display: flex;
-  justify-content: space-evenly;
-  gap: 1rem;
-  width: 90vw;
-  height: auto;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  padding: 40px 0;
-
 }
 
 .dark{

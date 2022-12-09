@@ -8,6 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import styles from './Detail.module.css'
 
 const Detail = () => {
  
@@ -18,6 +19,7 @@ const Detail = () => {
   const getData = () => {
     axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
       .then(res => setData(res.data))
+      .catch(err => console.log(err))
   }
 
   useEffect(() => {
@@ -25,26 +27,24 @@ const Detail = () => {
   }, [])
 
   return (
-    <div
-    className={state.theme} 
-    style={{ height: "75vh", display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center"}}>
-      <h1 style={{margin: "60px 0"}}>Detail Dentist {data?.name}</h1>
-      <TableContainer sx={{display: "flex", justifyContent: "center"}}>
-      <Table aria-label="simple table" className={state.theme}  sx={{width: "80vw"}}>
+    <div className={`${state.theme} ${styles.contenedor}`}>
+      <h1 className={styles.titulo}>Detail Dentist {data?.name}</h1>
+      <TableContainer className={styles.tablaContenedor}>
+      <Table aria-label="simple table" className={`${state.theme} ${styles.tabla}`} >
         <TableHead>
           <TableRow>
-            <TableCell sx={state.theme === "light" ? { color: "black" } : { color: "white" }} align="left">Name</TableCell>
-            <TableCell sx={state.theme === "light" ? { color: "black" } : { color: "white" }} align="left">Email</TableCell>
-            <TableCell sx={state.theme === "light" ? { color: "black" } : { color: "white" }} align="left">Phone</TableCell>
-            <TableCell sx={state.theme === "light" ? { color: "black" } : { color: "white" }} align="left">Website</TableCell>
+            <TableCell sx={state.theme === "dark" ? {color: "white"} : {color: "black"}} align="left">Name</TableCell>
+            <TableCell sx={state.theme === "dark" ? {color: "white"} : {color: "black"}} align="left">Email</TableCell>
+            <TableCell sx={state.theme === "dark" ? {color: "white"} : {color: "black"}} align="left">Phone</TableCell>
+            <TableCell sx={state.theme === "dark" ? {color: "white"} : {color: "black"}} align="left">Website</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             <TableRow>
-              <TableCell sx={state.theme === "light" ? { color: "black" } : { color: "white" }} align="left">{data?.name}</TableCell>
-              <TableCell sx={state.theme === "light" ? { color: "black" } : { color: "white" }} align="left">{data?.email}</TableCell>
-              <TableCell sx={state.theme === "light" ? { color: "black" } : { color: "white" }} align="left">{data?.phone}</TableCell>
-              <TableCell sx={state.theme === "light" ? { color: "black" } : { color: "white" }} align="left">{data?.website}</TableCell>
+              <TableCell sx={state.theme === "dark" ? {color: "white"} : {color: "black"}} align="left">{data?.name}</TableCell>
+              <TableCell sx={state.theme === "dark" ? {color: "white"} : {color: "black"}} align="left">{data?.email}</TableCell>
+              <TableCell sx={state.theme === "dark" ? {color: "white"} : {color: "black"}} align="left">{data?.phone}</TableCell>
+              <TableCell sx={state.theme === "dark" ? {color: "white"} : {color: "black"}} align="left">{data?.website}</TableCell>
             </TableRow>
         </TableBody>
       </Table>

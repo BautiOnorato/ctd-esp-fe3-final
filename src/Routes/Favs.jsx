@@ -1,17 +1,27 @@
 import { Button } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Card from "../Components/Card";
 import { ContextGlobal } from "../Components/utils/global.context";
+import styles from './CardContainer.module.css'
 
 const Favs = () => {
   
   const { state, dispatch } = useContext(ContextGlobal);
 
+  useEffect(() => {
+    dispatch({
+      type: "FAVS",
+      payload: {
+        ...state,
+        favs: JSON.parse(localStorage.getItem("favoritos"))
+      }
+    })
+  }, [])
+
   return (
-    <div className={state.theme} 
-    style={{minHeight: "85vh", padding: "20px", display: "flex", flexDirection: "column"}}>
-      <h1 style={{textAlign: "center"}}>Dentists Favs</h1>
-      <div className="card-grid">
+    <div className={`${state.theme } ${styles.main}`}>
+      <h1>Dentists Favs</h1>
+      <div className={styles.cardGrid}>
         {state.favs.map(doctor => (
         <Card key={doctor.id} id={doctor.id} name={doctor.name} username={doctor.username}/>
         ))}

@@ -1,0 +1,41 @@
+.main {
+    min-height: 85vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cardGrid {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1.5rem;
+    width: 70vw;
+    height: auto;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.btnEliminar {
+    background-color: white;
+    color: black;
+}
+
+.btnEliminar:hover {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+}
+
+.darkBtnEliminar {
+    background-color: black;
+    color: white;
+}
+
+.darkBtnEliminar:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
